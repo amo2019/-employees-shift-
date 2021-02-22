@@ -83,7 +83,7 @@ class EmployeeForm extends Component {
   render() {
     const styles = {
       fontSize: 15,
-      topMargin: "2px",
+      topMargin: "1px",
       color: "red",
       alignSelf: "center",
     };
@@ -106,7 +106,9 @@ class EmployeeForm extends Component {
               })
             }
           />
-          {this.props.flag && <label style={styles}>Name is required!</label>}
+          {this.props.flag && this.props.nameField == "Name" && (
+            <label style={styles}>Name is required!</label>
+          )}
         </CardSection>
 
         <CardSection>
@@ -124,6 +126,9 @@ class EmployeeForm extends Component {
               })
             }
           />
+          {this.props.flag && this.props.nameField == "Phone" && (
+            <label style={styles}>Phone number is required!</label>
+          )}
         </CardSection>
         <CardSection>
           <Text>Shift</Text>

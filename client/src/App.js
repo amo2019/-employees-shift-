@@ -5,12 +5,14 @@ import { connect } from "react-redux";
 import firebase from "firebase";
 // import firebase from "firebase/app";
 import Header from "./components/common/Header";
+import PrivateRoute from "./components/common/PrivateRoute";
 import { loginUser } from "./actions";
 //import EmployeeForm from "./components/EmployeeForm";
 import EmployeeList from "./components/EmployeeList";
 import LoginForm from "./components/LoginForm";
 import EmployeeEdit from "./components/EmployeeEdit";
 import EmployeeCreate from "./components/EmployeeCreate";
+
 //import Employees from "./pages/Employees";
 import Landing from "./components/Landing";
 import { config } from "./components/utils/firebaseUtils";
@@ -66,17 +68,10 @@ class App extends Component {
             />
             <Switch>
               <Route exact path={"/"} render={(props) => <Landing />} />
-              <Route
+              <PrivateRoute
                 exact
                 path={"/employeelist"}
-                render={(props) => (
-                  <EmployeeList
-                    {...props}
-                    handleLogin={this.handleLogin}
-                    handleLogout={this.handleLogout}
-                    loggedin={this.state.loggedin}
-                  />
-                )}
+                component={EmployeeList}
               />
 
               <Route
@@ -91,29 +86,15 @@ class App extends Component {
                   />
                 )}
               />
-              <Route
+              <PrivateRoute
                 exact
                 path={"/employeecreate"}
-                render={(props) => (
-                  <EmployeeCreate
-                    {...props}
-                    loggedin={this.state.loggedin}
-                    handleLogin={this.handleLogin}
-                    handleLogout={this.handleLogout}
-                  />
-                )}
+                component={EmployeeCreate}
               />
-              <Route
+              <PrivateRoute
                 exact
                 path={"/employeeedit"}
-                render={(props) => (
-                  <EmployeeEdit
-                    {...props}
-                    loggedin={this.state.loggedin}
-                    handleLogin={this.handleLogin}
-                    handleLogout={this.handleLogout}
-                  />
-                )}
+                component={EmployeeEdit}
               />
             </Switch>
           </div>

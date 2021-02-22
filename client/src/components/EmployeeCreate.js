@@ -43,10 +43,13 @@ class EmployeeCreate extends Component {
     const { currentUser } = firebase.auth();
     if (currentUser) {
       const { name, phone, shift } = this.props;
-      if (name.length < 1) {
+      if (name.length < 1 || phone.length < 1) {
         console.log(`Name is required: "${name}!"`);
         this.setState({
-          errors: { flag: true, nameField: "Name is required" },
+          errors: {
+            flag: true,
+            nameField: name.length < 1 ? "Name" : "Phone",
+          },
         });
         setTimeout(() => {
           this.setState({
@@ -79,26 +82,22 @@ class EmployeeCreate extends Component {
     return (
       <>
         <Card>
-          {this.props.loggedin ? (
-            <div>
-              <EmployeeForm
-                {...this.state.INITIAL_STATE}
-                {...this.state.errors}
+          <div>
+            <EmployeeForm
+              {...this.state.INITIAL_STATE}
+              {...this.state.errors}
+            />
+            <CardSection>
+              <Button
+                style={{
+                  backgroundColor: "#6dd19a",
+                }}
+                text="Add Employee"
+                color="secondary"
+                onClick={(e) => this.onButtonClick(e)}
               />
-              <CardSection>
-                <Button
-                  style={{
-                    backgroundColor: "#6dd19a",
-                  }}
-                  text="Add Employee"
-                  color="secondary"
-                  onClick={(e) => this.onButtonClick(e)}
-                />
-              </CardSection>
-            </div>
-          ) : (
-            <LoginForm {...this.props} />
-          )}
+            </CardSection>
+          </div>
         </Card>
         {this.props.saved ? (
           <Notification

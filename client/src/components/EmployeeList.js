@@ -45,25 +45,18 @@ class EmployeeList extends Component {
   render() {
     return (
       <Card>
-        {this.props.loggedin ? (
-          <div>
-            <Card>
-              {this.props.employees ? <ListItem {...this.props} /> : null}
-            </Card>
-            <div className="fixed-action-btn">
-              <Link to="/employeecreate">
-                <i className="btn-floating btn-large waves-effect waves-light green lighten-2">
-                  <i className="material-icons">add</i>
-                </i>
-              </Link>
-            </div>
+        <div>
+          <Card>
+            {this.props.employees ? <ListItem {...this.props} /> : null}
+          </Card>
+          <div className="fixed-action-btn">
+            <Link to="/employeecreate">
+              <i className="btn-floating btn-large waves-effect waves-light green lighten-2">
+                <i className="material-icons">add</i>
+              </i>
+            </Link>
           </div>
-        ) : (
-          <LoginForm
-            {...this.props}
-            handleSuccessfulAuth={this.handleSuccessfulAuth}
-          />
-        )}
+        </div>
       </Card>
     );
   }

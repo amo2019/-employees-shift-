@@ -42,9 +42,17 @@ class EmployeeEdit extends Component {
 
   componentDidMount() {
     const employee = this.props.employee;
-    _.each(employee, (value, prop) => {
+    /* _.each(employee, (value, prop) => { 
       this.props.employeeUpdate({ prop, value });
-    });
+    }); */
+    for (var key in employee) {
+      if (employee.hasOwnProperty(key)) {
+        let prop = key;
+        let value = employee[key];
+        // console.log(key + " -> " + employee[key]);
+        this.props.employeeUpdate({ prop, value });
+      }
+    }
   }
 
   onSaveChanges(props) {
