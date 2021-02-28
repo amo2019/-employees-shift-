@@ -1,7 +1,6 @@
-import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-//import { text } from 'react-native-communications';
+
 import { Card, CardSection } from "./common";
 import { Button } from "./controls/Button";
 import {
@@ -42,14 +41,12 @@ class EmployeeEdit extends Component {
 
   componentDidMount() {
     const employee = this.props.employee;
-    /* _.each(employee, (value, prop) => { 
-      this.props.employeeUpdate({ prop, value });
-    }); */
+
     for (var key in employee) {
       if (employee.hasOwnProperty(key)) {
         let prop = key;
         let value = employee[key];
-        // console.log(key + " -> " + employee[key]);
+
         this.props.employeeUpdate({ prop, value });
       }
     }
@@ -71,7 +68,7 @@ class EmployeeEdit extends Component {
   onTextEmployee(event) {
     event.preventDefault();
     const { shift } = this.props;
-    //localhost:3001
+
     http: fetch("/api/messages", {
       method: "POST",
       headers: {
@@ -100,7 +97,7 @@ class EmployeeEdit extends Component {
               type: "success",
             },
           });
-          //  console.log("isOpen:", this.state.notify.isOpen);
+
           console.log("MSM SUCCESS", this.state.message);
         } else {
           this.setState({
@@ -119,13 +116,7 @@ class EmployeeEdit extends Component {
 
   onAccept() {
     this.setState({ isOpen: false });
-    //  this.setState({
-    //    notify: {
-    //      isOpen: true,
-    //      message: "Employee has been deleted Successfully",
-    //      type: "success",
-    //    },
-    //  });
+
     const { history } = this.props;
     this.props.employeeDelete({ uid: this.props.uid });
     history.push("/employeelist");
@@ -184,7 +175,6 @@ class EmployeeEdit extends Component {
         <ConfirmDialog
           isible={this.state.isOpen}
           onDecline={this.onDecline.bind(this)}
-          // onAccept={this.onAccept.bind(this)}
           confirmDialog={this.state}
           setConfirmDialog={this.onAccept.bind(this)}
         >
@@ -212,11 +202,6 @@ class EmployeeEdit extends Component {
             }
           />
         ) : null}
-        {/* <ConfirmDialog
-          visible={this.state.showModal}
-          onDecline={this.onDecline.bind(this)}
-          onAccept={this.onAccept.bind(this)}
-        /> */}
       </Card>
     );
   }

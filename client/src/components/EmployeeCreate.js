@@ -8,7 +8,6 @@ import {
   employeeReset,
   employeeSaved,
 } from "../actions";
-import LoginForm from "./LoginForm";
 import { Card, CardSection } from "./common";
 import { Button } from "./controls/Button";
 import EmployeeForm from "./EmployeeForm";
@@ -44,7 +43,6 @@ class EmployeeCreate extends Component {
     if (currentUser) {
       const { name, phone, shift } = this.props;
       if (name.length < 1 || phone.length < 1) {
-        console.log(`Name is required: "${name}!"`);
         this.setState({
           errors: {
             flag: true,

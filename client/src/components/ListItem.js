@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 
-//import { Text, TouchableHighlight, View } from 'react-native';
-//import { Actions } from 'react-native-router-flux';
 import _ from "lodash";
 import { CircularProgress } from "@material-ui/core";
 import { connect } from "react-redux";
@@ -34,7 +32,7 @@ class ListItem extends Component {
       error: false,
     };
     this.searchRef = React.createRef();
-    this.state = { list: [] }; //{ name: "", phone: "", shift: "", uid: "" }; ...this.props.employees
+    this.state = { list: [] };
   }
   componentDidMount() {
     const { currentUser } = firebase.auth();
@@ -75,14 +73,6 @@ class ListItem extends Component {
   }
 
   onEmployeeSelect(employee) {
-    // _.each(employee, (value, prop) => {
-    //   currentemployee({ prop, value });
-
-    //   // const values = Object.keys(this.props.employees).map(
-    //   //   (key) => this.props.employees[key]
-    //   // );
-    // });
-
     this.props.history.push(
       "/employeeedit",
       { employee: employee },
@@ -98,13 +88,8 @@ class ListItem extends Component {
 
   filterEmployees = async (searchField) => {
     const { employees } = this.props;
-    // await this.setStateAsync({ load: true });
-    // this.setState({ list: [...employees] });
-    // await this.setStateAsync({ load: false });
     this.setState({ list: [...employees] });
-    console.log("employees", employees);
     let list = employees.filter((employee) => {
-      console.log("employee.name:", employee.name);
       if (employee.name)
         return employee.name.toLowerCase().includes(searchField.toLowerCase());
     });
@@ -132,7 +117,6 @@ class ListItem extends Component {
         >
           <div className="card   green lighten-5" key={employee.name}>
             <div
-              //className="card-content"
               className="card-title"
               style={{
                 display: "flex",

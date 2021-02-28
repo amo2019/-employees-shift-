@@ -5,8 +5,6 @@ import { logoutUser } from "../../actions";
 
 class Header extends Component {
   renderContent() {
-    //e.preventDefault();
-
     switch (this.props.loggedin) {
       case null:
         return;
@@ -30,18 +28,6 @@ class Header extends Component {
             </a>
           </li>
         );
-      // [
-      //   <li key="2" style={{ textShadow: "2px 2px 4px #000000" }}>
-      //     <a
-      //       href="#"
-      //       onClick={() => {
-      //         this.props.handleLogout();
-      //       }}
-      //     >
-      //       Logout
-      //     </a>
-      //   </li>,
-      // ];
     }
   }
 

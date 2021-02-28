@@ -29,16 +29,11 @@ class EmployeeForm extends Component {
       this.props.formClear();
     }
     const employee = this.props.employee;
-    /* _.each(employee, (value, prop) => {
-      console.log("prop, value", prop, value);
-      this.props.employeeUpdate({ prop, value });
-    }); */
 
     for (var key in employee) {
       if (employee.hasOwnProperty(key)) {
         let prop = key;
         let value = employee[key];
-        // console.log(key + " -> " + employee[key]);
         this.props.employeeUpdate({ prop, value });
       }
     }
@@ -58,12 +53,6 @@ class EmployeeForm extends Component {
     if (e.key === "Enter") {
       this.shiftRef.current.focus();
     }
-  }
-
-  shiftFieldKeyDown(e) {
-    // if (e.key === "Enter") {
-    //   this.saveRef.current.focus();
-    // }
   }
 
   saveKeyDown(e) {
@@ -87,7 +76,6 @@ class EmployeeForm extends Component {
       color: "red",
       alignSelf: "center",
     };
-    // style = { pickerTextStyle };
 
     return (
       <div>
@@ -134,7 +122,6 @@ class EmployeeForm extends Component {
           <Text>Shift</Text>
 
           <Select
-            //
             ref={this.shiftRef}
             onKeyDown={(e) => this.shiftFieldKeyDown(e)}
             placeholder={this.props.shift}

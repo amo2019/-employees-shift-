@@ -14,7 +14,7 @@ import { CircularProgress } from "@material-ui/core";
 class LoginForm extends Component {
   constructor(props) {
     super(props);
-    // this.textInput = React.createRef();
+
     this.state = {
       email: "",
       password: "",
@@ -30,7 +30,6 @@ class LoginForm extends Component {
       },
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.emailRef = React.createRef();
     this.passwordRef = React.createRef();
@@ -40,8 +39,6 @@ class LoginForm extends Component {
   }
 
   componentDidMount() {
-    // if (this.props.loggedin) this.props.employeesFetch();
-    //const userAuth = firebase.auth();
     const { loggedin, loggedout, history, loginUser } = this.props;
     const localStor = localStorage.getItem("authPass");
     if (!loggedin && !loggedout && localStor) {
@@ -57,7 +54,6 @@ class LoginForm extends Component {
       }
     }
     this.emailRef.current.focus();
-    //this.createDataSource(this.props);
   }
   Checkbox = (props) => <input type="checkbox" {...props} />;
 
@@ -97,10 +93,6 @@ class LoginForm extends Component {
     });
   }
 
-  handleSubmit(event) {
-    // const { email, password } = this.state;
-  }
-
   onEmailChange(text) {
     this.props.emailChanged(text.target.value);
     text.preventDefault();
@@ -117,7 +109,6 @@ class LoginForm extends Component {
     const re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     if (re.test(email) === false) {
-      //`<label style={styles}>This email is invalid</label>`
       this.setState({
         ...this.state,
         errors: { flag1: true, email: "This email is invalid" },
@@ -137,7 +128,6 @@ class LoginForm extends Component {
     }
 
     if (password.length < 1) {
-      // console.log(`Password is required: "${password}"`);
       this.setState({
         ...this.state,
         errors: { flag2: true, password: "Password is required" },

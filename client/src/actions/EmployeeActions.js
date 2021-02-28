@@ -1,12 +1,9 @@
 import firebase from "firebase";
-//import { Actions } from 'react-native-router-flux';
 import {
   EMPLOYEE_UPDATE,
   EMPLOYEE_CREATE,
   EMPLOYEES_FETCH_SUCCESS,
   EMPLOYEE_SAVE_SUCCESS,
-  CURRENT_EMPLOYEE,
-  EMPLOYEES_CHANGED,
   EMPLOYEES_CLEAR,
   EMPLOYEE_RESET,
   EMPLOYEE_DELETED,

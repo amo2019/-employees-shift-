@@ -17,11 +17,6 @@ if (process.env.NODE_ENV !== "production") {
     process.env.TWILIO_ACCOUNT_SID,
     process.env.TWILIO_AUTH_TOKEN
   );
-  console.log(
-    "twilio:",
-    process.env.TWILIO_ACCOUNT_SID,
-    process.env.TWILIO_AUTH_TOKEN
-  );
 }
 
 if (process.env.NODE_ENV === "production") {

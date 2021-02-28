@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
 import LoginForm from "./LoginForm";
 import { connect } from "react-redux";
 import { CardSection } from "./common";
 import { emailChanged, passwordChanged, loginUser } from "../actions";
-import EmployeeList from "./EmployeeList";
-//import Login from "./auth/Login";
 
 class Home extends Component {
   constructor(props) {

@@ -1,6 +1,4 @@
 import firebase from "firebase";
-//import { Actions } from 'react-native-router-flux';
-//import { history } from "../index";
 
 import {
   EMAIL_CHANGED,
@@ -59,7 +57,6 @@ export const logoutUser = () => {
         console.log("login success");
       })
       .catch(function (error) {
-        // An error happened.
         console.log("An error happened", error);
       });
   };

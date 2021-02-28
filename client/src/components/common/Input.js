@@ -5,7 +5,6 @@ const Input = ({ label, value, onChange, onKeyDown, placeholder }, ref) => {
     color: "#000",
     padding: 10,
     fontSize: 18,
-    //lineHeight: 23,
     flex: 2,
   };
 
@@ -16,7 +15,6 @@ const Input = ({ label, value, onChange, onKeyDown, placeholder }, ref) => {
   };
 
   const containerStyle = {
-    //height: 20,
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
@@ -26,7 +24,6 @@ const Input = ({ label, value, onChange, onKeyDown, placeholder }, ref) => {
     <div style={containerStyle}>
       <label style={labelStyle}>{label}</label>
       <input
-        // secureTextEntry={secureTextEntry}
         onKeyDown={onKeyDown}
         ref={ref}
         placeholder={placeholder}
@@ -34,9 +31,7 @@ const Input = ({ label, value, onChange, onKeyDown, placeholder }, ref) => {
         value={value}
         onChange={onChange}
       />
-      <div className="red-text" style={{ marginBottom: "20px" }}>
-        {/* {touched && error} */}
-      </div>
+      <div className="red-text" style={{ marginBottom: "20px" }}></div>
     </div>
   );
 };

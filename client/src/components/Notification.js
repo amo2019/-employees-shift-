@@ -16,10 +16,9 @@ export default function Notification(props) {
     if (reason === "clickaway") {
       return;
     }
-     setTimeout(() => {
-       setNotify();
-     }, 2000);
-    // setNotify();
+    setTimeout(() => {
+      setNotify();
+    }, 2000);
   };
 
   return (

@@ -4,13 +4,8 @@ import { connect } from "react-redux";
 import { employeesFetch, logoutUser } from "../actions";
 import { Card } from "./common";
 import ListItem from "./ListItem";
-import LoginForm from "./LoginForm";
 import { Link } from "react-router-dom";
 
-// const KEYS = {
-//   employees: "employees",
-//   employeeId: "id",
-// };
 class EmployeeList extends Component {
   constructor(props) {
     super(props);
@@ -63,10 +58,6 @@ class EmployeeList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  /* const employees = _.map(state.employees, (val, uid) => {
-    console.log("val, uid", val, uid);
-    return { ...val, uid };
-  }); */
   const employees = Object.keys(state.employees).map((key) => {
     return {
       key,
@@ -74,7 +65,6 @@ const mapStateToProps = (state) => {
     };
   });
   const { loggedin } = state.auth;
-  console.log("employees", employees);
   return { employees, loggedin };
 };
 export default connect(mapStateToProps, { employeesFetch, logoutUser })(
