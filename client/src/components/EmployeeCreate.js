@@ -9,7 +9,7 @@ import {
   employeeSaved,
 } from "../actions";
 import { Card, CardSection } from "./common";
-import { Button } from "./controls/Button";
+import { Button } from "./common/Button";
 import EmployeeForm from "./EmployeeForm";
 import Notification from "./Notification";
 

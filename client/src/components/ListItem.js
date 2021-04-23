@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 
-import _ from "lodash";
 import { CircularProgress } from "@material-ui/core";
 import { connect } from "react-redux";
 import { SearchBox } from "./SearchBox";

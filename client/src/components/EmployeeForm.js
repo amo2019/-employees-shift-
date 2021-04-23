@@ -4,7 +4,6 @@ import { employeeUpdate, logoutUser, formClear } from "../actions";
 import { CardSection, Input } from "./common";
 import Select from "react-select";
 import Text from "react-text";
-import _ from "lodash";
 
 const options = [
   { label: "Monday", value: "Monday" },
