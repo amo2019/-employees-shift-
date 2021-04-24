@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { Component, Suspense } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import firebase from "firebase";
 import Header from "./components/common/Header";
 import PrivateRoute from "./components/common/PrivateRoute";
 import { loginUser } from "./actions";
-import EmployeeList from "./components/EmployeeList";
+import routes from "./components/routes";
+import Spinner from "./spinner/Spinner";
+
 import LoginForm from "./components/LoginForm";
-import EmployeeEdit from "./components/EmployeeEdit";
-import EmployeeCreate from "./components/EmployeeCreate";
+
 import Landing from "./components/Landing";
 import { config } from "./components/utils/firebaseUtils";
 
@@ -47,8 +48,10 @@ class App extends Component {
 
   render() {
     return (
+     
       <div className="app">
-        <BrowserRouter>
+       
+        <Router>
           <div>
             <Route
               render={(props) => (
@@ -60,40 +63,32 @@ class App extends Component {
                 />
               )}
             />
-            <Switch>
-              <Route exact path={"/"} render={(props) => <Landing />} />
-              <PrivateRoute
-                exact
-                path={"/employeelist"}
-                component={EmployeeList}
-              />
-
-              <Route
+            <Route
                 exact
                 path={"/loginform"}
                 render={(props) => (
                   <LoginForm
                     {...props}
-                    loggedin={this.state.loggedin}
-                    handleLogin={this.handleLogin}
-                    handleLogout={this.handleLogout}
                   />
                 )}
               />
-              <PrivateRoute
-                exact
-                path={"/employeecreate"}
-                component={EmployeeCreate}
-              />
-              <PrivateRoute
-                exact
-                path={"/employeeedit"}
-                component={EmployeeEdit}
-              />
+            <Suspense fallback={<Spinner />}>
+            <Switch>
+              <Route exact path={"/"} render={(props) => <Landing />} />
+              {routes.map(({path, Component}, i) => (
+                  <PrivateRoute 
+                    key={i}
+                    exact
+                    path={path}
+                    component={Component} 
+                  />
+                  ))}
             </Switch>
+            </Suspense>
           </div>
-        </BrowserRouter>
+        </Router>
       </div>
+      
     );
   }
 }

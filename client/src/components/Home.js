@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import LoginForm from "./LoginForm";
+import React, { Component, Suspense, lazy } from "react";
+const LoginForm = lazy(() => import('./LoginForm'));
+//import LoginForm from "./LoginForm";
 import { connect } from "react-redux";
 import { CardSection } from "./common";
 import { emailChanged, passwordChanged, loginUser } from "../actions";
@@ -35,10 +36,10 @@ class Home extends Component {
             {/* <LoginForm handleSuccessfulAuth={this.handleSuccessfulAuth} /> */}
           </div>
         ) : (
-          <LoginForm
+          <Suspense fallback={<div>Loading...</div>}> <LoginForm
             {...this.props}
             handleSuccessfulAuth={this.handleSuccessfulAuth}
-          />
+          /> </Suspense>
         )}
       </CardSection>
     );

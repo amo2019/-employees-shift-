@@ -14,8 +14,8 @@ import {
   employeeReset,
 } from "../actions";
 import AddIcon from "@material-ui/icons/Add";
-import CloseIcon from "@material-ui/icons/Close";
-import Controls from "./controls/Controls";
+ import CloseIcon from "@material-ui/icons/Close";
+ import Controls from "./controls/Controls";
 
 class ListItem extends Component {
   constructor(props) {
@@ -41,10 +41,15 @@ class ListItem extends Component {
         .ref(`/users/${currentUser.uid}/employees`)
         .on("value", async (snapshot) => {
           const data = await snapshot.val();
-          const employeesSearch = _.map(data, (val, uid) => {
-            return { ...val, uid };
+        if(data){
+          const employeesSearch = Object.keys(data).map((uid) => {
+            return {
+              uid,
+              ...data[uid], 
+            };
           });
           this.setState({ list: [...employeesSearch] });
+        }
         });
     };
     fetchData();
@@ -211,10 +216,12 @@ class ListItem extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const employees = _.map(state.employees, (val, uid) => {
-    return { ...val, uid };
+  const employees = Object.keys(state.employees).map((uid) => {
+    return {
+      uid,
+      ...state.employees[uid],
+    };
   });
-
   const { loggedin } = state.auth;
   const { loading } = state.employees;
   return { employees, loggedin, loading };

@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { employeesFetch, logoutUser } from "../actions";
 import { Card } from "./common";
-import ListItem from "./ListItem";
+const ListItem = lazy(() => import('./ListItem'));
+//import ListItem from "./ListItem";
 import { Link } from "react-router-dom";
-
+import Spinner from "../spinner/Spinner";
 class EmployeeList extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +42,7 @@ class EmployeeList extends Component {
       <Card>
         <div>
           <Card>
-            {this.props.employees ? <ListItem {...this.props} /> : null}
+            {this.props.employees ? <Suspense fallback={< Spinner />}><ListItem {...this.props} /> </Suspense> : null}
           </Card>
           <div className="fixed-action-btn">
             <Link to="/employeecreate">

@@ -1,11 +1,11 @@
-import React from "react";
 import { Link } from "react-router-dom";
+//const EmployeeList = lazy(() => import('./EmployeeList'));
 import EmployeeList from "./EmployeeList";
 
 const Dashboard = () => {
   return (
     <div>
-      <EmployeeList />
+       <EmployeeList />
       <div className="fixed-action-btn">
         <Link
           to="/employeecreate"

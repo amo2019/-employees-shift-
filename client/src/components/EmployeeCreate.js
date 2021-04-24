@@ -9,7 +9,7 @@ import {
   employeeSaved,
 } from "../actions";
 import { Card, CardSection } from "./common";
-import { Button } from "./common/Button";
+import { Button } from "./controls/Button";
 import EmployeeForm from "./EmployeeForm";
 import Notification from "./Notification";
 
@@ -84,7 +84,7 @@ class EmployeeCreate extends Component {
             <EmployeeForm
               {...this.state.INITIAL_STATE}
               {...this.state.errors}
-            />
+            /> 
             <CardSection>
               <Button
                 style={{

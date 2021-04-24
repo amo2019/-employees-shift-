@@ -129,7 +129,7 @@ class EmployeeEdit extends Component {
   render() {
     return (
       <Card>
-        <EmployeeForm {...this.props.location.state} />
+         <EmployeeForm {...this.props.location.state} />
         <div style={{ padding: "25px", display: "flex" }}>
           <CardSection>
             <Button
