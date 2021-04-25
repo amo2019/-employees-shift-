@@ -2,18 +2,58 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { employeeUpdate, logoutUser, formClear } from "../actions";
 import { CardSection, Input } from "./common";
-import Select from "react-select";
 import Text from "react-text";
+import Select from 'react-select'
+
 
 const options = [
-  { label: "Monday", value: "Monday" },
-  { label: "Tuesday", value: "Tuesday" },
-  { label: "Wednesday", value: "Wednesday" },
-  { label: "Thursday", value: "Thursday" },
-  { label: "Friday", value: "Friday" },
-  { label: "Saturday", value: "Saturday" },
-  { label: "Sunday", value: "Sunday" },
+  {
+    label: "Monday",
+    value: "Monday",
+  },
+  {
+    label: "Tuesday",
+    value: "Tuesday",
+  },
+  {
+    label: "Wednesday",
+    value: "Wednesday",
+  },
+  {
+    label: "Thursday",
+    value: "Thursday",
+  },
+  {
+    label: "Friday",
+    value: "Friday",
+  },
+  {
+    label: "Saturday",
+    value: "Saturday",
+  },
+  {
+    label: "Sunday",
+    value: "Sunday",
+  },
 ];
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    borderBottom: '1px dotted pink',
+    color: state.isSelected ? 'pink' : 'green',
+    padding: 10,
+  }),
+  control: () => ({
+    // none of react-select's styles are passed to <Control />
+    width: 100,
+  }),
+  singleValue: (provided, state) => {
+    const opacity = state.isDisabled ? 0.5 : 1;
+    const transition = 'opacity 300ms';
+
+    return { ...provided, opacity, transition };
+  }
+}
 
 class EmployeeForm extends Component {
   constructor(props) {
@@ -23,6 +63,7 @@ class EmployeeForm extends Component {
     this.shiftRef = React.createRef();
     this.focusTextInput = this.focusTextInput.bind(this);
   }
+  
   componentDidMount() {
     if (this.props.clean) {
       this.props.formClear();
@@ -58,8 +99,8 @@ class EmployeeForm extends Component {
     this.onButtonClick();
   }
 
-  handleChange = (selectedOption) => {
-    let value = selectedOption.value.value;
+  handleChange = (selectedMenuItem) => {
+    let value = selectedMenuItem.value.value;
 
     this.props.employeeUpdate({ prop: "shift", value });
   };
@@ -75,6 +116,7 @@ class EmployeeForm extends Component {
       color: "red",
       alignSelf: "center",
     };
+    const { classes } = this.props;
 
     return (
       <div>
@@ -117,17 +159,10 @@ class EmployeeForm extends Component {
             <label style={styles}>Phone number is required!</label>
           )}
         </CardSection>
-        <CardSection>
-          <Text>Shift</Text>
-
-          <Select
-            ref={this.shiftRef}
-            onKeyDown={(e) => this.shiftFieldKeyDown(e)}
-            placeholder={this.props.shift}
-            options={options}
-            value={this.props.shift}
-            onChange={(value) => this.handleChange({ prop: "shift", value })}
-          />
+        <CardSection >
+          <Text >{"> "}Shift</Text>
+          <Select styles={customStyles}  ref={this.shiftRef}  placeholder={this.props.shift} value={this.props.shift}
+          onChange={(value) => this.handleChange({ prop: "shift", value })} options={options} />
         </CardSection>
       </div>
     );
